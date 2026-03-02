@@ -1,0 +1,24 @@
+# ── Core data science ──────────────────────────────────────────────────────────
+numpy>=1.24
+pandas>=2.0
+scipy>=1.11
+scikit-learn>=1.3
+
+# ── Visualization ──────────────────────────────────────────────────────────────
+matplotlib>=3.7
+seaborn>=0.13
+
+# ── Medical / biomedical signal processing ─────────────────────────────────────
+pydicom>=2.4          # Read/write DICOM medical imaging files
+wfdb>=4.1             # PhysioNet Waveform Database (ECG, EEG, etc.)
+mne>=1.6              # EEG / MEG signal processing
+
+# ── Notebooks ──────────────────────────────────────────────────────────────────
+jupyterlab>=4.0
+ipywidgets>=8.0
+
+# ── Development & testing ──────────────────────────────────────────────────────
+pytest>=7.4
+pytest-cov>=4.1
+black>=23.0
+flake8>=6.1

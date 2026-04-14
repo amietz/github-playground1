@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Your Cart – TeeShop{% endblock %}
+
+{% block content %}
+<section class="container">
+    <h2 class="section-title">Your Cart</h2>
+
+    {% if items %}
+    <table class="cart-table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Size</th>
+                <th>Qty</th>
+                <th>Subtotal</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.size }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ "%.2f"|format(item.subtotal) }}</td>
+                <td>
+                    <a href="{{ url_for('remove_from_cart', index=loop.index0) }}" class="btn btn-outline btn-sm">Remove</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="cart-total">
+        Total: <span>${{ "%.2f"|format(total) }}</span>
+    </div>
+
+    <div class="cart-actions">
+        <a href="{{ url_for('products') }}" class="btn btn-secondary">Continue Shopping</a>
+        <a href="{{ url_for('checkout') }}" class="btn btn-primary">Proceed to Checkout</a>
+    </div>
+
+    {% else %}
+    <div class="empty-cart">
+        <h2>Your cart is empty</h2>
+        <p>Browse our collection and add some T-shirts!</p>
+        <a href="{{ url_for('products') }}" class="btn btn-primary">Shop Now</a>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

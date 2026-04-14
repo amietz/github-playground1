@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}All T-Shirts – TeeShop{% endblock %}
+
+{% block content %}
+<section class="container">
+    <h2 class="section-title">All T-Shirts</h2>
+    <div class="product-grid">
+        {% for product in products %}
+        <div class="product-card">
+            <a href="{{ url_for('product_detail', product_id=product.id) }}">
+                <img src="{{ product.image }}" alt="{{ product.name }}">
+            </a>
+            <div class="card-body">
+                <h3>{{ product.name }}</h3>
+                <div class="price">${{ "%.2f"|format(product.price) }}</div>
+                <p>{{ product.description }}</p>
+                <a href="{{ url_for('product_detail', product_id=product.id) }}" class="btn btn-outline btn-sm">View Details</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

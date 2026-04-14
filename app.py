@@ -1,9 +1,11 @@
 """T-Shirt Store – a simple Flask web application for selling T-shirts."""
 
+import os
+
 from flask import Flask, render_template, request, redirect, session, url_for
 
 app = Flask(__name__)
-app.secret_key = "change-me-before-production"
+app.secret_key = os.environ.get("SECRET_KEY", os.urandom(32))
 
 # ---------------------------------------------------------------------------
 # Sample product catalogue
@@ -181,4 +183,4 @@ def place_order():
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=os.environ.get("FLASK_DEBUG", "false").lower() == "true")
